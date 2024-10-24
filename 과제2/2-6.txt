@@ -1,0 +1,38 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(string s) {
+    int nAnswer = 0;
+    int nSum = 0;
+    int nNum = 0;
+    vector<int> numbers; // 추가한 숫자를 저장
+    string str;
+    
+    if(s.length() < 1 || s.length() > 200)
+        return -1;
+
+    for(char c : s + ' '){
+        if(c == ' '){
+            if(str == "Z" && !numbers.empty()){
+                nSum -= numbers.back();
+                numbers.pop_back();
+            }else if(!str.empty()){
+                // 숫자인 경우
+                nNum = stoi(str);
+                if(nNum < -1000 || nNum > 1000){
+                    return -1;
+                }
+                nSum += nNum;
+                numbers.push_back(nNum);
+            }
+            str.clear(); // 초기화
+        }else{
+            str += c; // 공백이 아니면 추가
+        }
+    } 
+    
+    nAnswer = nSum;
+    return nAnswer;
+}

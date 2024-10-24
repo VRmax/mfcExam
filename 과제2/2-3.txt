@@ -1,0 +1,19 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<string> order){
+    int nAnswer = 0;
+    int nTotalPrice = 0;
+
+    for(const string item : order){
+        if(item.find("latte") != string::npos){ //라떼를 포함하는지 확인
+            nTotalPrice += 5000;
+        }else{
+            nTotalPrice += 4500;
+        }
+    }
+    nAnswer = nTotalPrice;
+    return nAnswer;
+}

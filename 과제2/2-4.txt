@@ -1,0 +1,21 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int a, int b) {
+    int nAnswer = 0;
+    
+    if (a < 1 || a >= 10000 || b < 1 || b >= 10000) {
+        return -1;
+    }
+    string ab = to_string(a) + to_string(b);
+    string ba = to_string(b) + to_string(a);
+
+    if (ab > ba) {  // 두 문자열을 비교하여 더 큰 값을 반환
+        nAnswer = stoi(ab);
+    }else{        // 같을 경우에도 ba를 반환
+        nAnswer = stoi(ba);  
+    }  
+    return nAnswer;
+}

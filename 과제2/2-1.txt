@@ -1,0 +1,27 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n, int k) {
+    int nAnswer = 0;
+    int nLambPrice = 12000;
+    int nDrinkPrice = 2000;
+    int nTotalLambPrice = 0;
+    int nTotalDrinkPrice = 0;
+    int nFreeDrink = 0;
+    int nDrink = 0;
+    
+    nFreeDrink = n / 10; //10인분당 음료수 1
+    nTotalLambPrice = n * nLambPrice;
+    
+    if (nDrink < 0)
+        nDrink = 0;
+    else
+        nDrink = k - nFreeDrink;
+    
+    nTotalDrinkPrice = nDrink * nDrinkPrice ;
+    nAnswer = nTotalLambPrice + nTotalDrinkPrice;
+ 
+    return nAnswer;
+}
