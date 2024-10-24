@@ -190,16 +190,6 @@ void CgProjectDlg::CreateImage()
 	memset(fm, 0xff, nWidth * nHeight);	//메모리초기화
 }
 
-void CgProjectDlg::LoadImage()
-{
-	if (m_image != NULL) {
-		m_image.Destroy();
-	}
-	m_image.Load(g_strFileImage);
-
-	UpdateDisplay();
-}
-
 void CgProjectDlg::UpdateDisplay()
 {
 	CClientDC dc(this);
@@ -208,7 +198,6 @@ void CgProjectDlg::UpdateDisplay()
 
 void CgProjectDlg::moveCircle(int startX, int startY, int endX, int endY)
 {
-
 	int nStep = m_nRadius / 2;
 	int nGray = 80;
 	int nDistanceX = (endX - startX) / nStep; //일정한 간격주기
@@ -232,8 +221,9 @@ void CgProjectDlg::moveCircle(int startX, int startY, int endX, int endY)
 		UpdateDisplay();
 		Sleep(100);
 
-		saveImege(i);
+		saveImage(i);
 	}
+
 }
 
 void CgProjectDlg::drawCircle(unsigned char* fm, int x, int y, int nGray)
@@ -267,7 +257,7 @@ BOOL CgProjectDlg::inInCircle(int i, int j, int nCenterX, int nCenterY, int nRad
 
 void CgProjectDlg::OnBnClickedBtnAction()
 {
-	ClearImage();
+	clearImage();
 	moveCircle(m_nStartX, m_nStartY, m_nEndX, m_nEndY);
 	UpdateDisplay();
 }
@@ -294,7 +284,7 @@ BOOL CgProjectDlg::vaildImgPos(int x, int y)
 	return rect.PtInRect(CPoint(x, y));
 }
 
-void CgProjectDlg::ClearImage()
+void CgProjectDlg::clearImage()
 {
 	if (m_image.IsNull()) {	//이미지가 비어있지 않은지 확인
 		return;
@@ -308,7 +298,7 @@ void CgProjectDlg::ClearImage()
 	CreateImage();
 }
 
-void CgProjectDlg::saveImege(int nStep)
+void CgProjectDlg::saveImage(int nStep)
 {
 	TCHAR path[MAX_PATH];
 
@@ -326,7 +316,7 @@ void CgProjectDlg::saveImege(int nStep)
 	m_image.Save(strFile);
 }
 
-void CgProjectDlg::LoadImege()
+void CgProjectDlg::loadImege()
 {
 	CFileDialog dlg(TRUE, _T("jpg"), NULL, OFN_FILEMUSTEXIST | OFN_HIDEREADONLY,
 		_T("Image Files (*.jpg;*.jpeg;*.bmp;*.png)|*.jpg;*.jpeg;*.bmp;*.png||"));
@@ -398,5 +388,5 @@ void CgProjectDlg::DrawX(CImage& image, CPoint center, int size) {
 
 void CgProjectDlg::OnBnClickedBtnOpen()
 {
-	LoadImege();
+	loadImege();
 }

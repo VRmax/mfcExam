@@ -72,7 +72,7 @@ void CDlgSetMenu::OnBnClickedBtnDraw()
 	int nGray = 80;
 
 	if (pMainDlg) {
-		pMainDlg->ClearImage();
+		pMainDlg->clearImage();
 		unsigned char* fm = (unsigned char*)pMainDlg->m_image.GetBits();  // 이미지의 첫번째 시작점
 
 		pMainDlg->m_nStartX = _ttoi(strStartX);

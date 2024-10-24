@@ -10,7 +10,7 @@ class CgProjectDlg : public CDialogEx
 	// 생성입니다.
 public:
 	CImage m_image;
-	CImage m_buffer;
+	CImage m_buffer; //더블버퍼링용
 	int m_nRadius;
 
 	int m_nStartX;
@@ -43,7 +43,6 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	void CreateImage();
-	void LoadImage();
 	void UpdateDisplay();
 	afx_msg void OnBnClickedBtnSetImage();
 	void moveCircle(int startX, int startY, int endX, int endY);
@@ -51,9 +50,9 @@ public:
 	afx_msg void OnBnClickedBtnAction();
 	afx_msg void OnDestroy();
 	BOOL vaildImgPos(int x, int y);
-	void ClearImage();
-	void saveImege(int nStep);
-	void LoadImege();
+	void clearImage();
+	void saveImage(int nStep);
+	void loadImege();
 	CPoint findCircleCenter(CImage& image);
 	void DrawX(CImage & image, CPoint center, int size);
 	BOOL inInCircle(int i, int j, int nCenterX, int nCenterY, int nRadius);
